@@ -3,6 +3,7 @@ import pymongo
 import json
 from sqlalchemy import create_engine
 import pandas as pd
+
 app = Flask(__name__)
 
 # setup mongo connection
@@ -17,6 +18,7 @@ medically_underserved = db.medically_underserved_df
 
 # connect to sql and collection
 engine = create_engine("postgresql://admin2:12345@localhost:5433/Healthcare_LowIncome")
+# engine = create_engine("postgresql://admin2:12345@localhost:5432/Healthcare_LowIncome")
 connection = engine.connect()
 
 @app.route("/")
@@ -51,6 +53,7 @@ def scrape3():
 def scrape4():
     low_income_race = pd.read_sql('select * from low_income_race', connection)
     return low_income_race.to_json()
+
 
 if __name__ == "__main__":
     app.run(debug=True)
