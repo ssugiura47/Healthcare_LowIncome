@@ -28,32 +28,29 @@ def index():
 def scrape():
     # write a statement that finds all the items in the db and sets it to a variable
     ca_counties_ = list(ca_counties.find())
-    # render an index.html template and pass in the data you retrieved from the database
     return Response(json.dumps(ca_counties_,default=str),mimetype="application/json")
 
 @app.route("/medical_county")
-def scrape():
+def scrape1():
     # write a statement that finds all the items in the db and sets it to a variable
     medical_county_ = list(medical_county.find())
-    # render an index.html template and pass in the data you retrieved from the database
     return Response(json.dumps(medical_county_,default=str),mimetype="application/json")
 
 @app.route("/medically_underserved")
-def scrape():
+def scrape2():
     # write a statement that finds all the items in the db and sets it to a variable
     medically_underserved_ = list(medically_underserved.find())
-    # render an index.html template and pass in the data you retrieved from the database
     return Response(json.dumps(medically_underserved_,default=str),mimetype="application/json")
 
-@app.route("/low_income_ca")
-def scrape():
-    low_income_ca = pd.read_sql('select * from low_income_ca', connection)
-    return low_income_ca.to_json()
+# @app.route("/low_income_ca")
+# def scrape3():
+#     low_income_ca = pd.read_sql('select * from low_income', connection)
+#     return low_income_ca.to_json()
 
-@app.route("/low_income_race")
-def scrape():
-    low_income_race = pd.read_sql('select * from low_income_race', connection)
-    return low_income_race.to_json()
+# @app.route("/low_income_race")
+# def scrape4():
+#     low_income_race = pd.read_sql('select * from low_income_race', connection)
+#     return low_income_race.to_json()
 
 if __name__ == "__main__":
     app.run(debug=True)
