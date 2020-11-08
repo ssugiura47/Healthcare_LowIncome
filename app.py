@@ -3,6 +3,7 @@ import pymongo
 import json
 from sqlalchemy import create_engine
 import pandas as pd
+from django.db import connection
 
 app = Flask(__name__)
 
@@ -17,8 +18,8 @@ medical_county = db.medical_county
 medically_underserved = db.medically_underserved_df
 
 # connect to sql and collection
-engine = create_engine("postgresql://admin2:12345@localhost:5433/Healthcare_LowIncome")
-# engine = create_engine("postgresql://admin2:12345@localhost:5432/Healthcare_LowIncome")
+# engine = create_engine("postgresql://admin2:12345@localhost:5433/Healthcare_LowIncome")
+engine = create_engine("postgresql://admin2:12345@localhost:5432/Healthcare_LowIncome")
 connection = engine.connect()
 
 @app.route("/")
@@ -46,13 +47,13 @@ def scrape2():
 
 @app.route("/low_income_ca")
 def scrape3():
-    low_income_ca = pd.read_sql('select * from low_income', connection)
-    return low_income_ca.to_json()
+    low_income_ca = pd.read_sql('select * from low_income' , connection)
+    return low_income_ca.to_json(orient="records")
 
 @app.route("/low_income_race")
 def scrape4():
     low_income_race = pd.read_sql('select * from low_income_race', connection)
-    return low_income_race.to_json()
+    return low_income_race.to_json(orient="records")
 
 
 if __name__ == "__main__":
