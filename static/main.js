@@ -15,23 +15,35 @@ var myMap = L.map("mapid", {
   }).addTo(myMap);
 
 
+var scrape_medical_county = "http://127.0.0.1:5000/medical_county"
+d3.json(scrape_medical_county, function (medical_co) {
+  // Create a new marker cluster group
+  var markers = L.markerClusterGroup();
+  // Loop through data
+  for (var i = 0; i < medical_co.length; i++) {
 
-// d3.json("http://127.0.0.1:5000/").then(function (data) {
+  // Set the data location property to a variable
+  var serviceProvider = medical_co[i].Provider;
+  var services = medical_co[i].Services;
+  var latitude = medical_co[i].Latitute;
+  var longitude = medical_co[i].Longitude;
+  var object = medical_co[i];
 
-// });
+  // Check for location property
+  if (latitude && longitude) {
+    // Add a new marker to the cluster group and bind a pop-up
+    markers.addLayer(L.marker([latitude, longitude])
+      .bindPopup("<h1>" + serviceProvider + "</h1> <hr> <h3>Services: " + services + "</h3>"));
+    };
+  };
+  myMap.addLayer(markers);
+});
 
-// d3.json("http://127.0.0.1:5000/ca_counties").then(function (data) {
+var scrape_medically_underserved = "http://127.0.0.1:5000/medically_underserved"
+d3.json(scrape_medically_underserved, function (underserved) {
+  L.geoJson(underserved).addTo(myMap);
 
-
-// });
-
-// d3.json("http://127.0.0.1:5000/medical_county").then(function (data) {
-
-// });
-
-// d3.json("http://127.0.0.1:5000/medically_underserved").then(function (data) {
-
-// });
+});
 
 // d3.json("http://127.0.0.1:5000/low_income_ca").then(function (data) {
 

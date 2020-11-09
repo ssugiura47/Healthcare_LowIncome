@@ -1,9 +1,9 @@
 from flask import Flask, render_template, jsonify, Response
+from sqlalchemy import create_engine
 import pymongo
 import json
-from sqlalchemy import create_engine
 import pandas as pd
-from django.db import connection
+# from django.db import connection
 
 app = Flask(__name__)
 
@@ -13,7 +13,6 @@ client = pymongo.MongoClient(conn)
 
 # connect to mongo db and collection
 db = client.HealthcareProject
-ca_counties = db.ca_counties
 medical_county = db.medical_county
 medically_underserved = db.medically_underserved_df
 
@@ -26,12 +25,6 @@ connection = engine.connect()
 def index():
     # render an index.html template and pass in the data you retrieved from the database
     return render_template("index.html")
-
-@app.route("/ca_counties")
-def scrape():
-    # write a statement that finds all the items in the db and sets it to a variable
-    ca_counties_ = list(ca_counties.find())
-    return Response(json.dumps(ca_counties_,default=str),mimetype="application/json")
 
 @app.route("/medical_county")
 def scrape1():

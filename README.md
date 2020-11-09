@@ -11,10 +11,8 @@ saved as: Medically_Underserved_Areas (GEOJSON)
 <!-- low income -->
 https://data.chhs.ca.gov/dataset/living-wage/resource/f5a57e7a-e0fe-4d80-b0f6-92d66ecb907f
 saved as: hci_living_wage_full_data (CSV)
-
-<!-- CA counties -->
-https://eric.clst.org/tech/usgeojson/
-saved as: ca_counties (JSON)
+cleaned as: cleaned_lowincome (CSV)
+cleaned as: cleaned_lowincomegrouped (CSV)
 
 FEATURES
 
