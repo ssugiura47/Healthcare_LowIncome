@@ -1,18 +1,18 @@
 // Creating map object
 var myMap = L.map("mapid", {
-    center: [38.5816, -121.4944],
-    zoom: 6
-  });
-  
-  // Adding tile layer
-  L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-    tileSize: 512,
-    maxZoom: 18,
-    zoomOffset: -1,
-    id: "mapbox/streets-v11",
-    accessToken: API_KEY
-  }).addTo(myMap);
+  center: [38.5816, -121.4944],
+  zoom: 6
+});
+
+// Adding tile layer
+L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+  attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
+  tileSize: 512,
+  maxZoom: 18,
+  zoomOffset: -1,
+  id: "mapbox/streets-v11",
+  accessToken: API_KEY
+}).addTo(myMap);
 
 
 var scrape_medical_county = "http://127.0.0.1:5000/medical_county"
@@ -22,18 +22,18 @@ d3.json(scrape_medical_county, function (medical_co) {
   // Loop through data
   for (var i = 0; i < medical_co.length; i++) {
 
-  // Set the data location property to a variable
-  var serviceProvider = medical_co[i].Provider;
-  var services = medical_co[i].Services;
-  var latitude = medical_co[i].Latitute;
-  var longitude = medical_co[i].Longitude;
-  var object = medical_co[i];
+    // Set the data location property to a variable
+    var serviceProvider = medical_co[i].Provider;
+    var services = medical_co[i].Services;
+    var latitude = medical_co[i].Latitute;
+    var longitude = medical_co[i].Longitude;
+    var object = medical_co[i];
 
-  // Check for location property
-  if (latitude && longitude) {
-    // Add a new marker to the cluster group and bind a pop-up
-    markers.addLayer(L.marker([latitude, longitude])
-      .bindPopup("<h1>" + serviceProvider + "</h1> <hr> <h3>Services: " + services + "</h3>"));
+    // Check for location property
+    if (latitude && longitude) {
+      // Add a new marker to the cluster group and bind a pop-up
+      markers.addLayer(L.marker([latitude, longitude])
+        .bindPopup("<h1>" + serviceProvider + "</h1> <hr> <h3>Services: " + services + "</h3>"));
     };
   };
   myMap.addLayer(markers);
@@ -49,6 +49,25 @@ d3.json(scrape_medically_underserved, function (underserved) {
 
 // });
 
-// d3.json("http://127.0.0.1:5000/low_income_race").then(function (data) {
 
-// });
+function buildPlot() {
+  d3.json("http://127.0.0.1:5000/low_income_race").then(function (data) {
+    console.log(data);
+    // Grab values from the data json object to build the plots
+
+    var family = data.family_below_the_living_wage;
+    var county = data.county;
+
+    var trace1 = {
+      type: "bar",
+      orientation: "h",
+      text: "race in each county",
+      x: county,
+      y: family
+
+
+    };
+
+    Plotly.newPlot("bar", [trace1]);
+  })};
+  buildPlot();

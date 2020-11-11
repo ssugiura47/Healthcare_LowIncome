@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 import pymongo
 import json
 import pandas as pd
+
 # from django.db import connection
 
 app = Flask(__name__)
@@ -17,8 +18,8 @@ medical_county = db.medical_county
 medically_underserved = db.medically_underserved_df
 
 # connect to sql and collection
-# engine = create_engine("postgresql://admin2:12345@localhost:5433/Healthcare_LowIncome")
-engine = create_engine("postgresql://admin2:12345@localhost:5432/Healthcare_LowIncome")
+engine = create_engine("postgresql://admin2:12345@localhost:5433/Healthcare_LowIncome")
+# engine = create_engine("postgresql://admin2:12345@localhost:5432/Healthcare_LowIncome")
 connection = engine.connect()
 
 @app.route("/")
