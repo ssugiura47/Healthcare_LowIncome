@@ -1,15 +1,33 @@
-
 var tableurl = "http://127.0.0.1:5000//low_income_ca"
 var tbody = d3.select("tbody");
 var h3 = d3.select("h3");
+// var data_pulled = undefined;
 
-d3.json(tableurl).then(data => {
-    data.forEach(function(health_data){
+// const clone = JSON.parse(JSON.stringify(object))
+
+d3.json(tableurl, function(h_data) {
+    h_data.forEach(function(health_data){
         var addRow = tbody.append('tr');
         Object.entries(health_data).forEach(function([x,y]){
             addRow.append('td').text(y);
-        })
+        })     
     });
+    // console.log(data_pulled)
+});
+// console.log(data_pulled)
+
+// d3.json(tableurl, function(h_data) {
+//     h_data.forEach(function(health_data){
+//         var addRow = tbody.append('tr');
+//         Object.entries(health_data).forEach(function([x,y]){
+//             addRow.append('td').text(y);
+//         })
+//         // data_pulled = Object.assign(h_data)
+//         data_pulled = clone(h_data)       
+//     });
+//     // console.log(data_pulled)
+// });
+// console.log(data_pulled)
 
 // - Use a date form in your HTML document and write JavaScript code that will listen for events and search through the date/time column to find rows that match user input.
 var button = d3.select("#filter-btn");
@@ -25,18 +43,20 @@ function buttonClicked(){
 
     // Print the value to the console
     console.log(inputValue);
+
+    data_pulled.forEach(function(h_data){
+        var tableDataFiltered = h_data.filter(health => (health.county).tolowercase() == (inputValue).tolowercase());
+        console.log(tableDataFiltered);
+        tbody.html("")
     
-    var tableDataFiltered = data.filter(health => health.county == inputValue);
-    console.log(tableDataFiltered);
-    tbody.html("")
-    
-    tableDataFiltered.forEach(function(health_data){
-        var addRow = tbody.append('tr')
-        Object.entries(health_data).forEach(function([x,y]){
-        addRow.append('td').text(y);
-        })
+        tableDataFiltered.forEach(function(h_data){
+            var addRow = tbody.append('tr')
+            Object.entries(h_data).forEach(function([x,y]){
+                addRow.append('td').text(y);
+            });
+        });
     });
 };
+
 button.on('click', buttonClicked)
-});
 
