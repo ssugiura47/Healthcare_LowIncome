@@ -47,26 +47,69 @@ d3.json(scrape_medically_underserved, function(underserved) {
 
 // });
 
-// d3.json("http://127.0.0.1:5000/low_income_race").then(function (data) {
-
-// });
-
 var scrape_low_income_race = "http://127.0.0.1:5000/low_income_race"
+function buildPlot2() {
+  d3.json(scrape_low_income_race, function (race_data) {
+    var race = []
+    var  sumnumfam = 0
+    var sumfam = 0
+
+    for (var i = 0; i < race_data.length; i++) {
+      race.push(race_data[i].race)
+      sumnumfam =+ race_data[i].number_of_families
+      sumfam =+ race_data[i].families_below_the_living_wage
+    }
+
+    console.log(race)
+    console.log(sumfam)
+    console.log(sumnumfam)
+
+    var trace2 = {
+      type: "bar",
+      x: race,
+      y: (sumfam/sumnumfam*100)
+  }
+    var layout2 = {
+      title: "Percent of Families Living Below the Living Wage in California by Race",
+      yaxis: {title: "Percent (%)"}
+    }
+
+    Plotly.newPlot("bar2", [trace2], layout2);
+
+  });
+
+}
+buildPlot2()
+
+
+var scrape_low_income_ca = "http://127.0.0.1:5000/low_income_ca"
 function buildPlot() {
-  d3.json(scrape_low_income_race, function(race_data) {
+  d3.json(scrape_low_income_ca, function(ca_data) {
     // Grab values from the data json object to build the plots
 
-    var family = race_data.family_below_the_living_wage;
-    var county = race_data.county;
+    var family = []
+    var county = []
 
-    var trace1 = {
-      type: "bar",
-      orientation: "h",
-      text: "Race in Each CA County",
-      x: county,
-      y: family
-    };
+    for (var i = 0; i < ca_data.length; i++) {
+      family.push(ca_data[i].percent_of_families_below_the_living_wage);
+      county.push(ca_data[i].county)
 
-    Plotly.newPlot("bar", [trace1]);
-  })};
+      };
+      var trace1 = {
+        type: "bar",
+        x: county,
+        y: family
+    }
+      var layout = {
+        title: "Percent of Families Living Below the Living Wage in California Counties",
+        yaxis: {title: "Percent (%)"}
+      }
+    // console.log(family)
+    // console.log(race_data[0].county)
+    // console.log(race_data[0].families_below_the_living_wage)
+    
+
+    Plotly.newPlot("bar", [trace1], layout);
+    });
+  }
   buildPlot();
