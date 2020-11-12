@@ -38,20 +38,29 @@ d3.json(scrape_medical_county, function(medical_co) {
   myMap.addLayer(markers);
 });
 
+// var hospitalIcon = L.icon({
+//   iconUrl: 'static/hospital.svg',
+//   shadowUrl: 'static/hospital.svg,
+
+//   iconSize:     [38, 95], // size of the icon
+//   shadowSize:   [50, 64], // size of the shadow
+//   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+//   shadowAnchor: [4, 62],  // the same for the shadow
+//   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+// });
+
+// L.marker([38.5816, -121.4944], {icon: hospitalIconn}).addTo(myMap).bindPopup("I am a hospital.");
+
 var scrape_medically_underserved = "http://127.0.0.1:5000/medically_underserved"
 d3.json(scrape_medically_underserved, function(underserved) {
   L.geoJson(underserved).addTo(myMap);
 });
 
-// d3.json("http://127.0.0.1:5000/low_income_ca").then(function (data) {
-
-// });
-
 var scrape_low_income_race = "http://127.0.0.1:5000/low_income_race"
 function buildPlot2() {
   d3.json(scrape_low_income_race, function (race_data) {
     var race = []
-    var  sumnumfam = 0
+    var sumnumfam = 0
     var sumfam = 0
 
     for (var i = 0; i < race_data.length; i++) {
@@ -112,4 +121,4 @@ function buildPlot() {
     Plotly.newPlot("bar", [trace1], layout);
     });
   }
-  buildPlot();
+buildPlot();
