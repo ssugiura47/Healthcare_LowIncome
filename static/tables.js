@@ -24,7 +24,7 @@ d3.json(tableurl, function(h_data) {
         // Print the value to the console
         console.log(inputValue);
     
-        var tableDataFiltered = h_data.filter(health => health.County === inputValue);
+        var tableDataFiltered = h_data.filter(health => health.county === inputValue);
         console.log(tableDataFiltered);
         tbody.html("")
         
