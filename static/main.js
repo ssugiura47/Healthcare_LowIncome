@@ -14,6 +14,15 @@ var myMap = L.map("mapid", {
     accessToken: API_KEY
   }).addTo(myMap);
 
+  var hospitalIcon = L.icon({
+    iconUrl: 'static/hospital.svg',
+    //shadowUrl: 'static/hospital.svg',
+    iconSize:     [25, 50], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [24, 34], // point of the icon which will correspond to marker's location
+    //shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  });
 
 var scrape_medical_county = "http://127.0.0.1:5000/medical_county"
 d3.json(scrape_medical_county, function(medical_co) {
@@ -24,16 +33,24 @@ d3.json(scrape_medical_county, function(medical_co) {
   // Set the data location property to a variable
     var serviceProvider = medical_co[i].Provider;
     var services = medical_co[i].Services;
+    console.log(services)
     var latitude = medical_co[i].Latitute;
     var longitude = medical_co[i].Longitude;
     var object = medical_co[i];
 
     // Check for location property
     if (latitude && longitude) {
-      // Add a new marker to the cluster group and bind a pop-up
-      markers.addLayer(L.marker([latitude, longitude])
-        .bindPopup("<h1>" + serviceProvider + "</h1> <hr> <h3>Services: " + services + "</h3>"));
-      };
+      if (services == 'Health Services'){
+        markers.addLayer(
+        L.marker([latitude, longitude], {icon: hospitalIcon}).addTo(myMap).bindPopup("Health Service"));
+      }
+      else 
+      {
+        // Add a new marker to the cluster group and bind a pop-up
+        markers.addLayer(L.marker([latitude, longitude])
+          .bindPopup("<h1>" + serviceProvider + "</h1> <hr> <h3>Services: " + services + "</h3>"));
+        };
+    }
   };
   myMap.addLayer(markers);
 
@@ -41,18 +58,8 @@ d3.json(scrape_medical_county, function(medical_co) {
 
 
 
-// var hospitalIcon = L.icon({
-//   iconUrl: 'static/hospital.svg',
-//   shadowUrl: 'static/hospital.svg,
 
-//   iconSize:     [38, 95], // size of the icon
-//   shadowSize:   [50, 64], // size of the shadow
-//   iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-//   shadowAnchor: [4, 62],  // the same for the shadow
-//   popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-// });
 
-// L.marker([38.5816, -121.4944], {icon: hospitalIconn}).addTo(myMap).bindPopup("I am a hospital.");
 
 var scrape_medically_underserved = "http://127.0.0.1:5000/medically_underserved"
 d3.json(scrape_medically_underserved, function(underserved) {

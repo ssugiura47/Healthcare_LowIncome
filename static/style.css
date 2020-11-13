@@ -70,7 +70,8 @@ select {
 }
 
 .plotly{
-  align-items: center;
+  align-self: center;
+  justify-content: center;
   height: 80%;
   width: 80%;
 }
@@ -121,7 +122,7 @@ select {
 /* The styles for the parallax */
 .hero {
   position: relative;
-  height: 1000px;
+  height: 600px;
   padding: 20px;
   margin: 0;
   background: mediumaquamarine;
