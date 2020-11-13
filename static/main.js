@@ -33,7 +33,7 @@ d3.json(scrape_medical_county, function(medical_co) {
   // Set the data location property to a variable
     var serviceProvider = medical_co[i].Provider;
     var services = medical_co[i].Services;
-    console.log(services)
+    // console.log(services)
     var latitude = medical_co[i].Latitute;
     var longitude = medical_co[i].Longitude;
     var object = medical_co[i];
