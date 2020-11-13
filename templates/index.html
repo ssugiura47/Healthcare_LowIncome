@@ -44,6 +44,7 @@
 
   <div class="container">
     <!-- The div that holds our map -->
+  <div class="col-md-12"></div>
   <div id="mapid"class=center></div>
     <div class="row margin-top-50">
       <div class="col-md-3">
@@ -75,14 +76,14 @@
                     </li> -->
                   </ul>
                 </div>
-                <button id="filter-btn" type="button" class="btn btn-default">Click for Filter data</button>
+                <button id="filter-btn" type="button" class="btn btn-default text-center">Click for Filtered data</button>
               </form>
             </div>
           </div>
         </aside>
       </div>
       <div class="col-md-9">
-        <div><h3>Low Income Household by CA Counties</h3></div>
+        <div><h3 class=text-center>Low Income Household by CA Counties</h3></div>
         <div id="table-area" class="scrollbar table-scroll">
           <table id="health-table" class="table table-striped">
             <thead>
@@ -100,8 +101,9 @@
       </div>
     </div>
   </div>
-  <div id="bar" style="width:1000px;height:600px;"></div>
-  <div id="bar2" style="width:1000px;height:600px;"></div>
+  <div class="col-md-12"></div>
+  <div id="bar" class="plotly margin-top-50" style="width:1000px;height:600px;"></div>
+  <div id="bar2" class="plotly margin-top-50" style="width:1000px;height:600px;"></div>
   
   <!-- Leaflet CSS -->
   <link rel=“stylesheet” href=“https://unpkg.com/leaflet@1.7.1/dist/leaflet.css”

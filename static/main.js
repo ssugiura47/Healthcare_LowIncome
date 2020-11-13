@@ -36,7 +36,10 @@ d3.json(scrape_medical_county, function(medical_co) {
       };
   };
   myMap.addLayer(markers);
+
 });
+
+
 
 // var hospitalIcon = L.icon({
 //   iconUrl: 'static/hospital.svg',
@@ -60,24 +63,19 @@ var scrape_low_income_race = "http://127.0.0.1:5000/low_income_race"
 function buildPlot2() {
   d3.json(scrape_low_income_race, function (race_data) {
     var race = []
-    var sumnumfam = 0
-    var sumfam = 0
+    var percent_race = []
 
     for (var i = 0; i < race_data.length; i++) {
       race.push(race_data[i].race)
-      sumnumfam =+ race_data[i].number_of_families
-      sumfam =+ race_data[i].families_below_the_living_wage
+      percent_race.push(race_data[i].percent_of_families_below_the_living_wage)
     }
-
-    console.log(race)
-    console.log(sumfam)
-    console.log(sumnumfam)
 
     var trace2 = {
       type: "bar",
       x: race,
-      y: (sumfam/sumnumfam*100)
+      y: percent_race
   }
+
     var layout2 = {
       title: "Percent of Families Living Below the Living Wage in California by Race",
       yaxis: {title: "Percent (%)"}
