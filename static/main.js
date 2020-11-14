@@ -56,11 +56,6 @@ d3.json(scrape_medical_county, function(medical_co) {
 
 });
 
-
-
-
-
-
 var scrape_medically_underserved = "http://127.0.0.1:5000/medically_underserved"
 d3.json(scrape_medically_underserved, function(underserved) {
   L.geoJson(underserved).addTo(myMap);
@@ -100,30 +95,59 @@ var scrape_low_income_ca = "http://127.0.0.1:5000/low_income_ca"
 function buildPlot() {
   d3.json(scrape_low_income_ca, function(ca_data) {
     // Grab values from the data json object to build the plots
-
+    var data = ca_data;
+    data.sort(function(a, b) {
+      return parseFloat(b.percent_of_families_below_the_living_wage) - parseFloat(a.percent_of_families_below_the_living_wage);
+    });
+    
     var family = []
     var county = []
 
     for (var i = 0; i < ca_data.length; i++) {
+
       family.push(ca_data[i].percent_of_families_below_the_living_wage);
       county.push(ca_data[i].county)
 
       };
+
+      transform = [{
+        type: 'sort',
+        target: family,
+        order: 'descending'
+      }];
+
       var trace1 = {
         type: "bar",
         x: county,
         y: family
-    }
+      };
+      
       var layout = {
         title: "Percent of Families Living Below the Living Wage in California Counties",
         yaxis: {title: "Percent (%)"}
-      }
+        // type: "total descending"
+        // yaxis: dict(autorange="reversed")
+      };
+    
+    // fig.update_layout(xaxis={'categoryorder':'category ascending'})
     // console.log(family)
     // console.log(race_data[0].county)
     // console.log(race_data[0].families_below_the_living_wage)
     
+    // Plotly.newPlot('graph', [{
+    //   type: 'bar',
+    //   y: family,
+    //   transforms: [{
+    //     type: 'sort',
+    //     target: 'y',
+    //     order: 'descending'
+    //   }]
+    // }]);
 
-    Plotly.newPlot("bar", [trace1], layout);
+
+    Plotly.newPlot("bar", [trace1], layout, transform);
+
     });
-  }
+  };
+
 buildPlot();
