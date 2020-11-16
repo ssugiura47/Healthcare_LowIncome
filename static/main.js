@@ -71,16 +71,19 @@ function buildPlot2() {
       race.push(race_data[i].race)
       percent_race.push(race_data[i].percent_of_families_below_the_living_wage)
     }
-
+    
     var trace2 = {
       type: "bar",
       x: race,
-      y: percent_race
+      y: percent_race,
+      name: 'AIAN: American Indian; NHOPI: Native Hawaiian'
   }
 
     var layout2 = {
       title: "Percent of Families Living Below the Living Wage in California by Race",
-      yaxis: {title: "Percent (%)"}
+      yaxis: {title: "Percent (%)"},
+      showlegend : true, 
+      legend: { xanchor: 'center', x: 0.5, orientation: 'h' } 
     }
 
     Plotly.newPlot("bar2", [trace2], layout2);
@@ -119,12 +122,14 @@ function buildPlot() {
       var trace1 = {
         type: "bar",
         x: county,
-        y: family
+        y: family,
+        name :"CA Counties"
       };
       
       var layout = {
         title: "Percent of Families Living Below the Living Wage in California Counties",
-        yaxis: {title: "Percent (%)"}
+        yaxis: {title: "Percent (%)"},
+        showlegend : true
         // type: "total descending"
         // yaxis: dict(autorange="reversed")
       };
