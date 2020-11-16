@@ -76,7 +76,7 @@ function buildPlot2() {
       type: "bar",
       x: race,
       y: percent_race,
-      name: 'AIAN: American Indian; NHOPI: Native Hawaiian'
+      name: 'AIAN: American Indian or Alaska Native; NHOPI: Native Hawaiian or Other Pacific Islander'
   }
 
     var layout2 = {
