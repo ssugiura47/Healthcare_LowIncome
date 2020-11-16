@@ -2,6 +2,8 @@ OVERVIEW:
 In this project, we wanted to find out how many Californians were living below the living wage, and what services were available for them publicly, especially health services.  
 
 DATA SOURCES WE USE:
+Healthcare Services Visualization project for Low Income Households :
+![1-Logo](static/OurMapbox.png)
 
 <!-- low income providers -->
 https://data.ca.gov/dataset/directory-of-service-providers1/resource/2b77a934-7425-4539-9caf-fa05bbabbe59
@@ -72,4 +74,5 @@ STEPS -
 
 3. Open local host in chrome browser:
 http://127.0.0.1:5000/
+
 
