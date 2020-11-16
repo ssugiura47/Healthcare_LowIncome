@@ -6,7 +6,6 @@ var myMap = L.map("mapid", {
   
   // Adding tile layer
   L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-    attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
     maxZoom: 18,
     zoomOffset: -1,
@@ -16,11 +15,8 @@ var myMap = L.map("mapid", {
 
   var hospitalIcon = L.icon({
     iconUrl: 'static/hospital.svg',
-    //shadowUrl: 'static/hospital.svg',
     iconSize:     [25, 50], // size of the icon
-    //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [24, 34], // point of the icon which will correspond to marker's location
-    //shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
   });
 
@@ -130,25 +126,7 @@ function buildPlot() {
         title: "Percent of Families Living Below the Living Wage in California Counties",
         yaxis: {title: "Percent (%)"},
         showlegend : true
-        // type: "total descending"
-        // yaxis: dict(autorange="reversed")
       };
-    
-    // fig.update_layout(xaxis={'categoryorder':'category ascending'})
-    // console.log(family)
-    // console.log(race_data[0].county)
-    // console.log(race_data[0].families_below_the_living_wage)
-    
-    // Plotly.newPlot('graph', [{
-    //   type: 'bar',
-    //   y: family,
-    //   transforms: [{
-    //     type: 'sort',
-    //     target: 'y',
-    //     order: 'descending'
-    //   }]
-    // }]);
-
 
     Plotly.newPlot("bar", [trace1], layout, transform);
 

@@ -19,8 +19,8 @@ medical_county = db.medical_county
 medically_underserved = db.medically_underserved_df
 
 # connect to sql and collection
-engine = create_engine("postgresql://admin2:12345@localhost:5433/Healthcare_LowIncome")
-# engine = create_engine("postgresql://admin2:12345@localhost:5432/Healthcare_LowIncome")
+# engine = create_engine("postgresql://admin2:12345@localhost:5433/Healthcare_LowIncome")
+engine = create_engine("postgresql://admin2:12345@localhost:5432/Healthcare_LowIncome")
 connection = engine.connect()
 
 @app.route("/")
