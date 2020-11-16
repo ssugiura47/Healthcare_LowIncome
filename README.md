@@ -1,3 +1,6 @@
+Healthcare Services Visualization project for Low Income Households :
+![1-Logo](static/OurMapbox.png)
+
 SOURCES WE USE:
 
 <!-- low income providers -->
@@ -64,4 +67,5 @@ STEPS -
 
 3. Open local host in chrome browser:
 http://127.0.0.1:5000/
+
 
