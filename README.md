@@ -44,7 +44,7 @@ STEPS -
 1. Run "data_cleanup.ipynb" file in Jupyter Notebook to clean up data and upload to our database (pgAdmin and mongoDB).
 ** within this document, we added a note with codes to run in pgAdmin**
 
-# CREATE USER admin22 with Password '12345'
+<!-- # CREATE USER admin22 with Password '12345'
 # Alter User admin22 With SuperUser;
 
 # IF EXISTS(SELECT *
@@ -68,7 +68,7 @@ STEPS -
 # 	Living_Wage INT,
 # 	Percent_of_Families_Below_the_Living_Wage INT,
 # 	FOREIGN KEY (County) REFERENCES low_income(County)
-# );
+# ); -->
 
 2. Run "app.py" file in a terminal
 
