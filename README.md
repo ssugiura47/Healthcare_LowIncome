@@ -1,10 +1,10 @@
 OVERVIEW:
 In this project, we wanted to find out how many Californians were living below the living wage, and what services were available for them publicly, especially health services.  
 
-DATA SOURCES WE USE:
 Healthcare Services Visualization project for Low Income Households :
 ![1-Logo](static/OurMapbox.png)
 
+DATA SOURCES WE USE:
 <!-- low income providers -->
 https://data.ca.gov/dataset/directory-of-service-providers1/resource/2b77a934-7425-4539-9caf-fa05bbabbe59
 saved as: medical_county (JSON)
@@ -20,7 +20,7 @@ cleaned as: cleaned_lowincome (CSV)
 cleaned as: cleaned_lowincomegrouped (CSV)
 
 FEATURES:
-    Mapbox, Plotly, Filter table
+    Mapbox, Plotly, Filter table:
     All using data we found on above sources and saved database through pgAdmin (for csv files) and mongoDB for (JSON/GeoJSON files) all ran through Flask.
     
 LANGUAGES/INSTALLATONS:  
@@ -31,10 +31,10 @@ LANGUAGES/INSTALLATONS:
     Bootstrap 
     Leaflet
     Mapbox
-    Marker Cluster CSS/JS
+    Marker Cluster 
     Plotly
-    D3 JavaScript
-    Choropleth JavaScript 
+    D3 
+    Choropleth  
 
 NOTE:
     API key - please add your mapbox API key in the "config.js" file
