@@ -4,12 +4,10 @@ In this project, we wanted to find out how many Californians were living below t
 GROUP PROJECT MEMBERS:
 Saki Sugiura, Belinda Soerjohadi, Usha Chari
 
-DATA SOURCES WE USED:
-
 Healthcare Services Visualization project for Low Income Households :
 ![1-Logo](static/OurMapbox.png)
 
-DATA SOURCES WE USE:
+DATA SOURCES WE USED:
 <!-- low income providers -->
 https://data.ca.gov/dataset/directory-of-service-providers1/resource/2b77a934-7425-4539-9caf-fa05bbabbe59
 saved as: medical_county (JSON)
