@@ -1,7 +1,10 @@
 OVERVIEW:
 In this project, we wanted to find out how many Californians were living below the living wage, and what services were available for them publicly, especially health services.  
 
-DATA SOURCES WE USE:
+GROUP PROJECT MEMBERS:
+Saki Sugiura, Belinda Soerjohadi, Usha Chari
+
+DATA SOURCES WE USED:
 Healthcare Services Visualization project for Low Income Households :
 ![1-Logo](static/OurMapbox.png)
 
